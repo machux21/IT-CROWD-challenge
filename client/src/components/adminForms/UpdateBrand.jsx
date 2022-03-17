@@ -21,7 +21,7 @@ const UpdateBrand = () => {
 		if (value === "default") {
 			return setForm(initialForm);
 		}
-		const brand = brands[value];
+		const brand = brands.find((b) => b.id == value);
 		console.log(brand);
 		setForm({ id: brand.id, name: brand.name, logo_url: brand.logo_url });
 	};
@@ -35,7 +35,13 @@ const UpdateBrand = () => {
 		if (form.name && form.logo_url) {
 			axios
 				.put(`http://localhost:3001/brands/`, form)
-				.then((res) => console.log(res.data))
+				.then((res) => {
+					console.log(res.data)
+					axios
+						.get("http://localhost:3001/brands")
+						.then((res) => setBrands(res.data))
+						.catch((error) => console.log(error));
+				})
 				.catch((error) => console.log(error));
 		} else {
 			alert("All fields must be completed");
@@ -49,7 +55,7 @@ const UpdateBrand = () => {
 					<select name="brands" onChange={handleBrands}>
 						<option value="default">Brands</option>
 						{brands.map((b, i) => (
-							<option key={i} value={i}>
+							<option key={i} value={b.id}>
 								{b.name}
 							</option>
 						))}
