@@ -16,7 +16,7 @@ const Admin = () => {
 			<ul>
 				<li><Link to="/admin/createproduct">Create product</Link></li>
 				<li><Link to="/admin/updateproduct">Update product</Link></li>
-				<li><Link to="/admin/deleteproduct">Update product</Link></li>
+				<li><Link to="/admin/deleteproduct">Delete product</Link></li>
 			</ul>
 			</div>
 		</nav>
