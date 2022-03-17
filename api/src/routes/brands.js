@@ -5,7 +5,9 @@ const { Brand, Product } = require("../db.js");
 //GET BRANDS
 router.get("/", async (req, res) => {
 	try {
-		const response = await Brand.findAll();
+		const response = await Brand.findAll({
+			order: [["name", "asc"]],
+		});
 		res.status(200).json(response);
 	} catch (e) {
 		console.log(e);
@@ -16,13 +18,13 @@ router.get("/", async (req, res) => {
 //CREATE BRAND
 router.post("/", async (req, res) => {
 	const { name, logo_url } = req.body;
-	if ( !name || !logo_url) {
+	if (!name || !logo_url) {
 		return res.status(404).json("All fields must be completed");
 	}
 	try {
 		await Brand.create({
 			name,
-			logo_url
+			logo_url,
 		});
 		res.status(200).json("Brand succesfully created");
 	} catch (e) {
@@ -31,7 +33,7 @@ router.post("/", async (req, res) => {
 	}
 });
 //UPDATE BRAND
-router.put("/:id", async (req, res) => {
+router.put("/", async (req, res) => {
 	const { id, name, logo_url } = req.body;
 	if (!id || !name || !logo_url) {
 		return res.status(404).json("All fields must be completed");
@@ -40,7 +42,7 @@ router.put("/:id", async (req, res) => {
 		await Brand.update(
 			{
 				name,
-				logo_url
+				logo_url,
 			},
 			{
 				where: {
@@ -49,7 +51,7 @@ router.put("/:id", async (req, res) => {
 			}
 		);
 		res.status(200).json("Brand succesfully updated");
-	}catch (e) {
+	} catch (e) {
 		console.log(e);
 		res.status(404).json(e);
 	}
