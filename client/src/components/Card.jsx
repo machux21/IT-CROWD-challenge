@@ -6,7 +6,7 @@ const Card = ({name, image, price, brand, brandLogo}) => {
 	return (
 		<CardContainer>
 			<img src={image} alt={name} />
-			<div>
+			<div style={{padding: "10px"}}>
 				<h3>{name}</h3>
 				<h4>${price} ARS</h4>
 				<p>{brand}</p>

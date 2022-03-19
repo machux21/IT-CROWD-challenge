@@ -8,6 +8,7 @@ import CreateProduct from "./components/adminForms/CreateProduct";
 import DeleteProduct from "./components/adminForms/DeleteProduct";
 import UpdateProduct from "./components/adminForms/UpdateProduct";
 import Login from "./components/Login";
+import Register from "./components/Register";
 function App() {
   return (
     <div>
@@ -23,7 +24,7 @@ function App() {
         </Route>
 
         <Route path="/login" element={<Login />} />
-
+        <Route path="/register" element={<Register />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
     </div>

@@ -17,7 +17,7 @@ const Detail = () => {
 			<Navbar />
 			<div>
 				{product ? (
-					<div>
+					<div style={{display: "flex", justifyContent: "center", flexDirection: "column", padding: "20px"}}>
 						<h2>{product.name}</h2>
 						<img
 							src={product.image_url}
@@ -25,7 +25,9 @@ const Detail = () => {
 							width="300"
 							height="300"
 						/>
+						<h3>Description</h3>
 						<span>{product.description}</span>
+						<h3>Brand</h3>
 						<span>{product.Brand.name}</span>
 						<img
 							src={product.Brand.logo_url}
@@ -33,7 +35,7 @@ const Detail = () => {
 							width="300"
 							height="300"
 						/>
-						<h4>Price: ${product.price}</h4>
+						<h3>Price: ${product.price} ARS</h3>
 					</div>
 				) : (
 					<h1>Loading...</h1>

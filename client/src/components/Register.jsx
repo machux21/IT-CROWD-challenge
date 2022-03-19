@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
 const initialForm = {
 	username: "",
 	password: "",
 };
-const Login = () => {
+
+const Register = () => {
 	const navigate = useNavigate();
 	const [form, setForm] = useState(initialForm);
 	const handleChange = (e) => {
@@ -16,19 +17,22 @@ const Login = () => {
 		e.preventDefault();
 		if (form.username && form.password) {
 			axios
-				.post(`http://localhost:3001/admin/login`, form)
+				.post(`http://localhost:3001/admin/register`, form, {
+					withCredentials: true,
+				})
 				.then((res) => {
-					console.log(res.data);
-					localStorage.setItem("token", res.data.token);
-					navigate("/");
+					alert(res.data);
+					navigate("/login");
+					setForm(initialForm);
 				})
 				.catch((error) => console.log(error));
 		} else {
 			alert("All fields must be completed");
 		}
 	};
+	console.log(form);
 	return (
-		<div style={{ width: "100%" }}>
+		<div>
 			<Link
 				to="/"
 				style={{
@@ -52,25 +56,7 @@ const Login = () => {
 				</button>
 			</Link>
 
-			<h3>Login</h3>
-			<p>Copy this user</p>
-			<div>
-				<ul
-					style={{
-						backgroundColor: "green",
-						width: "200px",
-						margin: "5px",
-						borderRadius: "5px",
-						boxSizing: "border-box",
-						padding: "15px",
-						listStyle: "none",
-					}}
-				>
-					<li>Username: machux</li>
-					<li>Password: Francisco</li>
-				</ul>
-			</div>
-
+			<h2>Register</h2>
 			<form
 				onSubmit={handleSubmit}
 				style={{ display: "flex", flexDirection: "column" }}
@@ -108,12 +94,12 @@ const Login = () => {
 						fontSize: "20px",
 					}}
 				>
-					Login
+					Register
 				</button>
 			</form>
-			<Link to="/register">Register</Link>
+			<Link to="/login">Already have account? Login</Link>
 		</div>
 	);
 };
 
-export default Login;
+export default Register;

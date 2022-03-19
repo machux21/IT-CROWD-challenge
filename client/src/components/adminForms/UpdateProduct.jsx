@@ -10,15 +10,8 @@ const initialForm = {
 };
 const UpdateProduct = () => {
 	const [form, setForm] = useState(initialForm);
-	const [brands, setBrands] = useState([]);
 	const [products, setProducts] = useState([]);
-	//FETCHING BRANDS
-	useEffect(() => {
-		axios
-			.get("http://localhost:3001/brands")
-			.then((res) => setBrands(res.data))
-			.catch((error) => console.log(error));
-	}, []);
+	
 	//FETCHING PRODUCTS
 	useEffect(() => {
 		axios

@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const router = Router();
 const { Brand, Product } = require("../db.js");
-
+const validateToken = require("../helpers/validateToken.js");
 //GET PRODUCTS
 router.get("/", async (req, res) => {
 	try {
@@ -25,7 +25,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //CREATE PRODUCTS
-router.post("/", async (req, res) => {
+router.post("/", validateToken , async (req, res) => {
 	const { name, description, image_url, price, brand } = req.body;
 	if (!name || !description || !image_url || !price || !brand) {
 		return res.status(400).send("All field must be completed");
@@ -41,15 +41,15 @@ router.post("/", async (req, res) => {
 		await productBrand.addProduct(newProduct);
 		res.status(200).json("Product succesfully created");
 	} catch (e) {
-		res.status(404).json({ message: e.message });
+		res.status(404).json(e);
 	}
 });
 
 //UPDATE PRODUCTS
-router.put("/:id", async (req, res) => {
+router.put("/:id", validateToken, async (req, res) => {
 	const { id } = req.params;
 	const { name, description, image_url, price, brand } = req.body;
-	if(!id || !name || !description || !image_url || !price || !brand){
+	if (!id || !name || !description || !image_url || !price || !brand) {
 		return res.status(404).json("All fields must be completed");
 	}
 	try {
@@ -75,7 +75,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //DELETE PRODUCT
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", validateToken, async (req, res) => {
 	const { id } = req.params;
 	try {
 		await Product.destroy({
