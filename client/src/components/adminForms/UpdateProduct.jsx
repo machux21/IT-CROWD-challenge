@@ -31,15 +31,16 @@ const UpdateProduct = () => {
 		const { value, name } = e.target;
 		setForm({ ...form, [name]: value });
 	};
-	const handleBrands = (e)=>{
-		const {value} = e.target;
-		const product = products.find(p => p.id == value);
-		const {id, name, description, image_url, price, Brand} = product;
-		setForm({id, name, description, image_url, price, brand: Brand.name});
-	}
+	const handleBrands = (e) => {
+		const { value } = e.target;
+		const product = products.find((p) => p.id == value);
+		const { id, name, description, image_url, price, Brand } = product;
+		setForm({ id, name, description, image_url, price, brand: Brand.name });
+	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (form.id &&
+		if (
+			form.id &&
 			form.name &&
 			form.description &&
 			form.image_url &&
@@ -47,8 +48,16 @@ const UpdateProduct = () => {
 			form.brand
 		) {
 			axios
-				.put(`http://localhost:3001/products/${form.id}`, form)
-				.then((res) => console.log(res.data))
+				.put(
+					`http://localhost:3001/products/${
+						form.id
+					}?accesstoken=${localStorage.getItem("token")}`,
+					form,
+					{
+						withCredentials: true,
+					}
+				)
+				.then((res) => alert(res.data))
 				.catch((error) => console.log(error));
 		} else {
 			alert("All fields must be completed");
@@ -57,7 +66,14 @@ const UpdateProduct = () => {
 	console.log(form);
 	return (
 		<>
-			<form onSubmit={handleSubmit}>
+			<form 
+				style={{
+					margin: "0 auto",
+					display: "flex",
+					justifyContent: "center",
+					flexDirection: "column",
+				}}
+				onSubmit={handleSubmit}>
 				<label>
 					Choose a product
 					<select name="products" onChange={handleBrands}>
@@ -91,6 +107,7 @@ const UpdateProduct = () => {
 				</label>
 				<label>
 					Description
+					<br/>
 					<textarea
 						name="description"
 						onChange={handleChange}

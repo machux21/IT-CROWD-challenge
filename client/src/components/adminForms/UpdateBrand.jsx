@@ -34,9 +34,15 @@ const UpdateBrand = () => {
 		e.preventDefault();
 		if (form.name && form.logo_url) {
 			axios
-				.put(`http://localhost:3001/brands/`, form)
+				.put(
+					`http://localhost:3001/brands?accesstoken=${localStorage.getItem(
+						"token"
+					)}`,
+					form,
+					{ withCredentials: true }
+				)
 				.then((res) => {
-					console.log(res.data)
+					alert(res.data);
 					axios
 						.get("http://localhost:3001/brands")
 						.then((res) => setBrands(res.data))
@@ -48,8 +54,16 @@ const UpdateBrand = () => {
 		}
 	};
 	return (
-		<div>
-			<form onSubmit={handleSubmit}>
+		<div style={{ display: "flex", justifyContent: "center" }}>
+			<form
+				style={{
+					margin: "0 auto",
+					display: "flex",
+					justifyContent: "center",
+					flexDirection: "column",
+				}}
+				onSubmit={handleSubmit}
+			>
 				<label>
 					Choose the brand to update
 					<select name="brands" onChange={handleBrands}>

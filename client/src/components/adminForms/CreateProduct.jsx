@@ -23,10 +23,22 @@ const CreateProduct = () => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		if (form.name && form.description && form.image_url && form.price && form.brand) {
+		if (
+			form.name &&
+			form.description &&
+			form.image_url &&
+			form.price &&
+			form.brand
+		) {
 			axios
-				.post("http://localhost:3001/products", form)
-				.then((res) => console.log(res.data))
+				.post(
+					`http://localhost:3001/products?accesstoken=${localStorage.getItem(
+						"token"
+					)}`,
+					form,
+					{ withCredentials: true }
+				)
+				.then((res) => alert(res.data))
 				.catch((error) => console.log(error));
 		} else {
 			alert("All fields must be completed");
@@ -34,8 +46,16 @@ const CreateProduct = () => {
 	};
 	console.log(form);
 	return (
-		<>
-			<form onSubmit={handleSubmit}>
+		<div style={{ display: "flex", justifyContent: "center" }}>
+			<form
+				style={{
+					margin: "0 auto",
+					display: "flex",
+					justifyContent: "center",
+					flexDirection: "column",
+				}}
+				onSubmit={handleSubmit}
+			>
 				<label>
 					Name
 					<input
@@ -58,13 +78,16 @@ const CreateProduct = () => {
 				</label>
 				<label>
 					Description
+					<br />
 					<textarea
 						name="description"
 						onChange={handleChange}
 						value={form.description}
 						cols="30"
 						rows="10"
-					>Description...</textarea>
+					>
+						Description...
+					</textarea>
 				</label>
 				<label>
 					Price
@@ -89,7 +112,7 @@ const CreateProduct = () => {
 				</label>
 				<button type="submit">Create product</button>
 			</form>
-		</>
+		</div>
 	);
 };
 

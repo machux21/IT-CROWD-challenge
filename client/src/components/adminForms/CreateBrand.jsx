@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 const initialForm = {
 	name: "",
 	logo_url: "",
@@ -10,19 +10,34 @@ const CreateBrand = () => {
 		const { value, name } = e.target;
 		setForm({ ...form, [name]: value });
 	};
-	const handleSubmit = (e)=>{
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		if(form.name && form.logo_url){
-		axios.post("http://localhost:3001/brands", form)
-		.then(res => console.log(res.data))
-		.catch(error => console.log(error));
-		}else{
+		if (form.name && form.logo_url) {
+			axios
+				.post(
+					`http://localhost:3001/brands?accesstoken=${localStorage.getItem(
+						"token"
+					)}`,
+					form,
+					{ withCredentials: true }
+				)
+				.then((res) => alert(res.data))
+				.catch((error) => console.log(error));
+		} else {
 			alert("All fields must be completed");
 		}
-	}
+	};
 	return (
-		<div>
-			<form onSubmit={handleSubmit}>
+		<div style={{display: "flex", justifyContent: "center"}}>
+			<form
+				onSubmit={handleSubmit}
+				style={{
+					margin: "0 auto",
+					display: "flex",
+					justifyContent: "center",
+					flexDirection: "column",
+				}}
+			>
 				<label>
 					Brand Name
 					<input
