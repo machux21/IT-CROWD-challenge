@@ -13,7 +13,7 @@ const CreateProduct = () => {
 	//FETCHING BRANDS
 	useEffect(() => {
 		axios
-			.get("http://localhost:3001/brands")
+			.get("https://it-crowd-challenge.herokuapp.com/brands")
 			.then((res) => setBrands(res.data))
 			.catch((error) => console.log(error));
 	}, []);
@@ -32,7 +32,7 @@ const CreateProduct = () => {
 		) {
 			axios
 				.post(
-					`http://localhost:3001/products?accesstoken=${localStorage.getItem(
+					`https://it-crowd-challenge.herokuapp.com?accesstoken=${localStorage.getItem(
 						"token"
 					)}`,
 					form,

@@ -7,7 +7,7 @@ const Detail = () => {
 	const { id } = useParams();
 	useEffect(() => {
 		axios
-			.get(`http://localhost:3001/products/${id}`)
+			.get(`https://it-crowd-challenge.herokuapp.com/products/${id}`)
 			.then((res) => setProduct(res.data))
 			.catch((error) => console.log(error));
 	}, []);

@@ -17,7 +17,7 @@ const Register = () => {
 		e.preventDefault();
 		if (form.username && form.password) {
 			axios
-				.post(`http://localhost:3001/admin/register`, form, {
+				.post(`https://it-crowd-challenge.herokuapp.com/admin/register`, form, {
 					withCredentials: true,
 				})
 				.then((res) => {

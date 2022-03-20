@@ -3,14 +3,10 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_HOST, POSTGRES_PORT
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/ecommerce`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
-/*const sequelize = new Sequelize({
+const sequelize = new Sequelize({
     database: POSTGRES_DB,
     username: POSTGRES_USER,
     password: POSTGRES_PASSWORD,
@@ -24,7 +20,7 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
         }
      },
 });
-*/
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];

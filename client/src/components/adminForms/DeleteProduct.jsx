@@ -5,14 +5,14 @@ const DeleteProducts = () => {
 	const [products, setProducts] = useState([]);
 	useEffect(() => {
 		axios
-			.get("http://localhost:3001/products")
+			.get("https://it-crowd-challenge.herokuapp.com/products")
 			.then((res) => setProducts(res.data))
 			.catch((error) => console.log(error));
 	}, []);
 	const handleClick = (id) => {
 		axios
 			.delete(
-				`http://localhost:3001/products/${id}?accesstoken=${localStorage.getItem(
+				`https://it-crowd-challenge.herokuapp.com/products/${id}?accesstoken=${localStorage.getItem(
 					"token"
 				)}`,
 				{ withCredentials: true }

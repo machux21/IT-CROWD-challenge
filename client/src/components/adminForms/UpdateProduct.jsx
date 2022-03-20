@@ -15,7 +15,7 @@ const UpdateProduct = () => {
 	//FETCHING PRODUCTS
 	useEffect(() => {
 		axios
-			.get("http://localhost:3001/products")
+			.get("https://it-crowd-challenge.herokuapp.com/products")
 			.then((res) => setProducts(res.data))
 			.catch((error) => console.log(error));
 	}, []);
@@ -42,7 +42,7 @@ const UpdateProduct = () => {
 		) {
 			axios
 				.put(
-					`http://localhost:3001/products/${
+					`https://it-crowd-challenge.herokuapp.com/products/${
 						form.id
 					}?accesstoken=${localStorage.getItem("token")}`,
 					form,

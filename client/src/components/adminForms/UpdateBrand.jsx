@@ -11,7 +11,7 @@ const UpdateBrand = () => {
 	//FETCHING BRANDS
 	useEffect(() => {
 		axios
-			.get("http://localhost:3001/brands")
+			.get("https://it-crowd-challenge.herokuapp.com/brands")
 			.then((res) => setBrands(res.data))
 			.catch((error) => console.log(error));
 	}, []);
@@ -35,7 +35,7 @@ const UpdateBrand = () => {
 		if (form.name && form.logo_url) {
 			axios
 				.put(
-					`http://localhost:3001/brands?accesstoken=${localStorage.getItem(
+					`https://it-crowd-challenge.herokuapp.com/brands?accesstoken=${localStorage.getItem(
 						"token"
 					)}`,
 					form,
@@ -44,9 +44,10 @@ const UpdateBrand = () => {
 				.then((res) => {
 					alert(res.data);
 					axios
-						.get("http://localhost:3001/brands")
+						.get("https://it-crowd-challenge.herokuapp.com/brands")
 						.then((res) => setBrands(res.data))
 						.catch((error) => console.log(error));
+					setForm(initialForm);
 				})
 				.catch((error) => console.log(error));
 		} else {

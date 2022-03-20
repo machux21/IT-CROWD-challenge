@@ -15,13 +15,16 @@ const CreateBrand = () => {
 		if (form.name && form.logo_url) {
 			axios
 				.post(
-					`http://localhost:3001/brands?accesstoken=${localStorage.getItem(
+					`https://it-crowd-challenge.herokuapp.com/brands?accesstoken=${localStorage.getItem(
 						"token"
 					)}`,
 					form,
 					{ withCredentials: true }
 				)
-				.then((res) => alert(res.data))
+				.then((res) => {
+					alert(res.data);
+					setForm(initialForm);
+				})
 				.catch((error) => console.log(error));
 		} else {
 			alert("All fields must be completed");

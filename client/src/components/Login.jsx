@@ -16,7 +16,7 @@ const Login = () => {
 		e.preventDefault();
 		if (form.username && form.password) {
 			axios
-				.post(`http://localhost:3001/admin/login`, form)
+				.post(`https://it-crowd-challenge.herokuapp.com/admin/login`, form)
 				.then((res) => {
 					console.log(res.data);
 					localStorage.setItem("token", res.data.token);

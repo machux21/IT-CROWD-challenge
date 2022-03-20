@@ -6,7 +6,6 @@ module.exports = (sequelize) => {
   sequelize.define("Admin", {
     username: {
       type: DataTypes.STRING,
-      primaryKey: true,
       allowNull: false,
       unique: true,
     },
