@@ -32,7 +32,7 @@ const CreateProduct = () => {
 		) {
 			axios
 				.post(
-					`https://it-crowd-challenge.herokuapp.com?accesstoken=${localStorage.getItem(
+					`https://it-crowd-challenge.herokuapp.com/products?accesstoken=${localStorage.getItem(
 						"token"
 					)}`,
 					form,
