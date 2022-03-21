@@ -104,7 +104,7 @@ const CreateProduct = () => {
 					<select name="brand" onChange={handleChange}>
 						<option value="default">Brands</option>
 						{brands.map((b, i) => (
-							<option key={i} value={b.name}>
+							<option key={i} value={b.id}>
 								{b.name}
 							</option>
 						))}
