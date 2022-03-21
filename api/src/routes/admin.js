@@ -19,6 +19,7 @@ router.post("/register", async (req, res) => {
 			username,
 			password: await bcrypt.hash(password, salt),
 		});
+		res.status(200).json("User registered")
 	} catch (e) {
 		
 		res.status(400).json(e)

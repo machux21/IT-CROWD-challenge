@@ -30,8 +30,8 @@ A great product listing application with the ability to log in and manage all CR
 
 ## Deploy Links
 
-- *Frontend*: 
-- *Backend*:
+- *Frontend*: https://friendly-khorana-d46c86.netlify.app/
+- *Backend*: https://it-crowd-challenge.herokuapp.com/
 
 ## API Reference
 

@@ -53,23 +53,6 @@ const Login = () => {
 			</Link>
 
 			<h3>Login</h3>
-			<p>Copy this user</p>
-			<div>
-				<ul
-					style={{
-						backgroundColor: "green",
-						width: "200px",
-						margin: "5px",
-						borderRadius: "5px",
-						boxSizing: "border-box",
-						padding: "15px",
-						listStyle: "none",
-					}}
-				>
-					<li>Username: machux</li>
-					<li>Password: Francisco</li>
-				</ul>
-			</div>
 
 			<form
 				onSubmit={handleSubmit}
