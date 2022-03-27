@@ -1,6 +1,7 @@
 import React from "react";
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import styled from "styled-components";
 const Admin = () => {
 	const navigate = useNavigate();
 	const Logout = () => {
@@ -8,49 +9,67 @@ const Admin = () => {
 		navigate("/");
 	};
 	return (
-		<>
+		<div>
 			<Navbar />
-			<div style={{ display: "flex", width:"100vw"}}>
-				<nav
-					style={{
-						backgroundColor: "green",
-						height: "100vh",
-						width: "200px",
-						padding: "20px",
-					}}
-				>
-					<div>
-						<h5>Manage Brands</h5>
+			<div style={{ display: "flex", width: "100vw" }}>
+				<AdminBar>
+					<div style={{ margin: "0 auto" }}>
+						<h3>Manage Brands</h3>
 						<ul>
 							<li>
-								<Link to="/admin/createbrand">
+								<NavLink
+									className={({ isActive }) =>
+										isActive ? "active" : "inactive"
+									}
+									to="/admin/createbrand"
+								>
 									Create brand
-								</Link>
+								</NavLink>
 							</li>
 							<li>
-								<Link to="/admin/updatebrand">
+								<NavLink
+									className={({ isActive }) =>
+										isActive ? "active" : "inactive"
+									}
+									to="/admin/updatebrand"
+								>
 									Update brand
-								</Link>
+								</NavLink>
 							</li>
 						</ul>
 					</div>
 					<div>
-						<h5>Manage products</h5>
+						<h3>Manage products</h3>
 						<ul>
 							<li>
-								<Link to="/admin/createproduct">
+								<NavLink
+									className={({ isActive }) =>
+										isActive ? "active" : "inactive"
+									}
+									to="/admin/createproduct"
+								>
 									Create product
-								</Link>
+								</NavLink>
 							</li>
 							<li>
-								<Link to="/admin/updateproduct">
+								<NavLink
+									className={({ isActive }) =>
+										isActive ? "active" : "inactive"
+									}
+									to="/admin/updateproduct"
+								>
 									Update product
-								</Link>
+								</NavLink>
 							</li>
 							<li>
-								<Link to="/admin/deleteproduct">
+								<NavLink
+									to="/admin/deleteproduct"
+									className={({ isActive }) =>
+										isActive ? "active" : "inactive"
+									}
+								>
 									Delete product
-								</Link>
+								</NavLink>
 							</li>
 						</ul>
 					</div>
@@ -69,13 +88,50 @@ const Admin = () => {
 					>
 						Logout
 					</button>
-				</nav>
-				<div style={{display: "flex", justifyContent: "center", width: "100%"}}>
+				</AdminBar>
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						width: "100%",
+					}}
+				>
 					<Outlet />
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 
+const AdminBar = styled.nav`
+	background-color: green;
+	height: 100vh;
+	width: 200px;
+	text-align: center;
+	div {
+		width: 100%;
+	}
+	.active {
+		display: block;
+		width: 105%;
+		height: 50px;
+		background-color: #043827;
+	}
+	ul {
+		list-style: none;
+		margin: 0 auto;
+		padding: 0;
+		li {
+			display: block;
+			width: 100%;
+			height: 50px;
+			a {
+				text-decoration: none;
+				color: white;
+				line-height: 50px;
+				font-size: 18px;
+			}
+		}
+	}
+`;
 export default Admin;

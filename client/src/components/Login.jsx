@@ -23,7 +23,7 @@ const Login = () => {
 					form
 				)
 				.then((res) => {
-					console.log(res.data);
+					alert("Welcome!")
 					localStorage.setItem("token", res.data.token);
 					navigate("/");
 				})

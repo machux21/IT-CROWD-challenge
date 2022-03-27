@@ -36,7 +36,6 @@ const Register = () => {
 			alert("All fields must be completed");
 		}
 	};
-	console.log(form);
 	return (
 		<RegisterContainer>
 			<Navbar />
