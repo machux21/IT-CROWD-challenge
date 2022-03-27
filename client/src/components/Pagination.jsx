@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 const Pagination = ({ productsLength, paginate, productsPerPage }) => {
-	
 	useEffect(() => {
 		paginate(1);
 	}, [productsLength]);

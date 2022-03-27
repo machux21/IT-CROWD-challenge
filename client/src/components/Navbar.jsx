@@ -1,24 +1,82 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 const Navbar = () => {
 	return (
-		<div style={{display: "flex", backgroundColor: "#043927", color: "#4CBB17"}}>
-			<ul style={{textDecoration: "none", display: "flex", justifyContent: "space-around", width: "200px"}}>
+		<NavContainer
+			style={{
+				display: "flex",
+				backgroundColor: "#043927",
+				color: "#4CBB17",
+				width: "100vw",
+			}}
+		>
+			<ul
+				style={{
+					textDecoration: "none",
+					display: "flex",
+					justifyContent: "space-around",
+					width: "200px",
+					listStyle: "none"
+				}}
+			>
 				<li>
-					<Link  to="/" style={{textDecoration: "none", color: "white", fontSize: "20px"}}>Home</Link>
+					<NavLink
+						to="/"
+						className={({ isActive }) =>
+							isActive ? "active" : "inactive"
+						}
+					>
+						Home
+					</NavLink>
 				</li>
 				{localStorage.getItem("token") ? (
-					<li >
-						<Link to="/admin" style={{textDecoration: "none", color: "white", fontSize: "20px"}}>Admin</Link>
+					<li>
+						<NavLink
+							to="/admin"
+							className={({ isActive }) =>
+								isActive ? "active" : "inactive"
+							}
+						>
+							Admin
+						</NavLink>
 					</li>
 				) : (
 					<li>
-						<Link to="/login" style={{textDecoration: "none", color: "white", fontSize: "20px"}}>Login</Link>
+						<NavLink
+							to="/login"
+							className={({ isActive }) =>
+								isActive ? "active" : "inactive"
+							}
+						>
+							Login
+						</NavLink>
 					</li>
 				)}
 			</ul>
-		</div>
+		</NavContainer>
 	);
 };
+
+const NavContainer = styled.div`
+	display: flex;
+	background-color: #043827;
+	width: 100vw;
+	.active {
+		display: block;
+		border-bottom: 5px solid green;
+		text-decoration: none;
+		color: white;
+		font-size: 30px;
+		padding-bottom: 5px;
+
+	}
+	.inactive {
+		border: none;
+		text-decoration: none;
+		color: white;
+		font-size: 30px;
+	}
+`;
 
 export default Navbar;

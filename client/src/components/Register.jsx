@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 import axios from "axios";
+import styled from "styled-components";
 const initialForm = {
 	username: "",
 	password: "",
@@ -17,9 +19,13 @@ const Register = () => {
 		e.preventDefault();
 		if (form.username && form.password) {
 			axios
-				.post(`https://it-crowd-challenge.herokuapp.com/admin/register`, form, {
-					withCredentials: true,
-				})
+				.post(
+					`https://it-crowd-challenge.herokuapp.com/admin/register`,
+					form,
+					{
+						withCredentials: true,
+					}
+				)
 				.then((res) => {
 					alert(res.data);
 					navigate("/login");
@@ -32,30 +38,8 @@ const Register = () => {
 	};
 	console.log(form);
 	return (
-		<div>
-			<Link
-				to="/"
-				style={{
-					textDecoration: "none",
-					color: "white",
-					fontSize: "20px",
-				}}
-			>
-				<button
-					style={{
-						backgroundColor: "#043927",
-						borderRadius: "5px",
-						color: "white",
-						height: "60px",
-						border: "none",
-						margin: "10px",
-						fontSize: "20px",
-					}}
-				>
-					Back to home
-				</button>
-			</Link>
-
+		<RegisterContainer>
+			<Navbar />
 			<h2>Register</h2>
 			<form
 				onSubmit={handleSubmit}
@@ -63,7 +47,8 @@ const Register = () => {
 			>
 				<label>
 					Username
-					<input
+					<br />
+					<Input
 						type="text"
 						name="username"
 						placeholder="Username..."
@@ -73,7 +58,8 @@ const Register = () => {
 				</label>
 				<label>
 					Password
-					<input
+					<br />
+					<Input
 						type="password"
 						name="password"
 						placeholder="Password..."
@@ -81,25 +67,50 @@ const Register = () => {
 						onChange={handleChange}
 					/>
 				</label>
-				<button
+				<Button
 					type="submit"
-					style={{
-						backgroundColor: "#043927",
-						borderRadius: "5px",
-						color: "white",
-						width: "100px",
-						height: "40px",
-						border: "none",
-						margin: "10px",
-						fontSize: "20px",
-					}}
 				>
 					Register
-				</button>
+				</Button>
 			</form>
-			<Link to="/login">Already have account? Login</Link>
-		</div>
+			<Link style={{fontSize: "25px"}} to="/login">Already have account? Login</Link>
+		</RegisterContainer>
 	);
 };
 
+const RegisterContainer = styled.div`
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+`;
+const Input = styled.input`
+	min-width: 200px;
+	max-width: 350px;
+	height: 50px;
+	border-radius: 5px;
+	margin: 10px auto;
+	border: 2px solid black;
+	padding-left: 10px;
+	font-size: 20px;
+	box-sizing: border-box;
+`;
+const Button = styled.button`
+	background-color: #043927;
+	justify-self: center;
+	border-radius: 5px;
+	color: white;
+	height: 40px;
+	border: none;
+	margin: 10px;
+	font-size: 20px;
+	min-width: 200px;
+	max-width: 350px;
+	&:hover {
+		background-color: #008000;
+	}
+`;
 export default Register;

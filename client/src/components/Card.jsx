@@ -19,18 +19,24 @@ const CardContainer = styled.div`
 	width: 200px;
 	height: 350px;
 	margin: 20px;
-	border-radius: 5px;
-	border: 1px solid black;
+	padding: 10px;
+	border-radius: 8px;
 	overflow: hidden;
-	img{
+	transition: 0.5s;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	text-decoration: none;
+	&:hover{
+		background-color: #eeee;
+	}
+	img {
 		width: 100%;
 		height: 150px;
 	}
-	div{
-		img{
-			width:50px;
+	div {
+		img {
+			width: 50px;
 			height: 50px;
 		}
 	}
-`
+`;
 export default Card

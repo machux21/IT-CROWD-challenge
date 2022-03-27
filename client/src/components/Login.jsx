@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import styled from "styled-components";
+import Navbar from "./Navbar";
 const initialForm = {
 	username: "",
 	password: "",
@@ -31,39 +33,18 @@ const Login = () => {
 		}
 	};
 	return (
-		<div style={{ width: "100%" }}>
-			<Link
-				to="/"
-				style={{
-					textDecoration: "none",
-					color: "white",
-					fontSize: "20px",
-				}}
-			>
-				<button
-					style={{
-						backgroundColor: "#043927",
-						borderRadius: "5px",
-						color: "white",
-						height: "60px",
-						border: "none",
-						margin: "10px",
-						fontSize: "20px",
-					}}
-				>
-					Back to home
-				</button>
-			</Link>
-
-			<h3>Login</h3>
+		<LoginContainer>
+			<Navbar />
+			<h2>Login</h2>
 
 			<form
 				onSubmit={handleSubmit}
 				style={{ display: "flex", flexDirection: "column" }}
 			>
 				<label>
-					Username
-					<input
+					Username:
+					<br />
+					<Input
 						type="text"
 						name="username"
 						placeholder="Username..."
@@ -72,8 +53,9 @@ const Login = () => {
 					/>
 				</label>
 				<label>
-					Password
-					<input
+					Password:
+					<br />
+					<Input
 						type="password"
 						name="password"
 						placeholder="Password..."
@@ -81,25 +63,46 @@ const Login = () => {
 						onChange={handleChange}
 					/>
 				</label>
-				<button
-					type="submit"
-					style={{
-						backgroundColor: "#043927",
-						borderRadius: "5px",
-						color: "white",
-						width: "100px",
-						height: "40px",
-						border: "none",
-						margin: "10px",
-						fontSize: "20px",
-					}}
-				>
+				<Button type="submit" >
 					Login
-				</button>
+				</Button>
 			</form>
-			<Link to="/register">Register</Link>
-		</div>
+			<Link  style={{fontSize: "25px"}}
+			to="/register">Register</Link>
+		</LoginContainer>
 	);
 };
 
+const LoginContainer = styled.div`
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+`;
+const Input = styled.input`
+	min-width: 200px;
+	max-width: 350px;
+	height: 50px;
+	border-radius: 5px;
+	margin: 10px auto;
+	border: 2px solid black;
+	padding-left: 10px;
+	font-size: 20px;
+`;
+const Button = styled.button`
+	background-color: #043927;
+	justify-self: center;
+	border-radius: 5px;
+	color: white;
+	height: 40px;
+	border: none;
+	margin: 10px;
+	font-size: 20px;
+	&:hover{
+		background-color: #008000;
+	}
+`;
 export default Login;
