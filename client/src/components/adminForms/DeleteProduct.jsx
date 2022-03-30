@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import axios from "axios";
 
 const DeleteProducts = () => {
@@ -31,9 +32,9 @@ const DeleteProducts = () => {
 						<li key={i}>
 							<div>
 								<p>{p.name}</p>
-								<button onClick={() => handleClick(p.id)}>
+								<Button onClick={() => handleClick(p.id)}>
 									Delete
-								</button>
+								</Button>
 							</div>
 						</li>
 					);
@@ -42,5 +43,19 @@ const DeleteProducts = () => {
 		</div>
 	);
 };
+
+const Button = styled.button`
+	background-color: #043927;
+	justify-self: center;
+	border-radius: 5px;
+	color: white;
+	height: 40px;
+	border: none;
+	margin: 10px;
+	font-size: 20px;
+	&:hover {
+		background-color: #008000;
+	}
+`;
 
 export default DeleteProducts;

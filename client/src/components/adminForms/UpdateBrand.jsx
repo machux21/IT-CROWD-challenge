@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import styled from "styled-components";
 const initialForm = {
 	id: null,
 	name: "",
@@ -67,18 +68,20 @@ const UpdateBrand = () => {
 			>
 				<label>
 					Choose the brand to update
-					<select name="brands" onChange={handleBrands}>
+					<br />
+					<Select name="brands" onChange={handleBrands}>
 						<option value="default">Brands</option>
 						{brands.map((b, i) => (
 							<option key={i} value={b.id}>
 								{b.name}
 							</option>
 						))}
-					</select>
+					</Select>
 				</label>
 				<label>
 					Brand Name
-					<input
+					<br />
+					<Input
 						type="text"
 						placeholder="Brand name..."
 						name="name"
@@ -88,7 +91,8 @@ const UpdateBrand = () => {
 				</label>
 				<label>
 					Logo URL
-					<input
+					<br />
+					<Input
 						type="text"
 						placeholder="Logo url..."
 						value={form.logo_url}
@@ -96,12 +100,53 @@ const UpdateBrand = () => {
 						onChange={handleChange}
 					/>
 				</label>
-				<button disabled={form.id === null} type="submit">
+				<Button disabled={form.id === null} type="submit">
 					Update Brand
-				</button>
+				</Button>
 			</form>
 		</div>
 	);
 };
+
+const Input = styled.input`
+	min-width: 200px;
+	max-width: 350px;
+	height: 50px;
+	border-radius: 5px;
+	margin: 10px auto;
+	border: 2px solid black;
+	padding-left: 10px;
+	font-size: 20px;
+`;
+
+const Textarea = styled.textarea`
+	border-radius: 5px;
+	margin: 10px auto;
+	border: 2px solid black;
+	padding-left: 10px;
+	font-size: 20px;
+`;
+
+const Button = styled.button`
+	background-color: #043927;
+	justify-self: center;
+	border-radius: 5px;
+	color: white;
+	height: 40px;
+	border: none;
+	margin: 10px;
+	font-size: 20px;
+	&:hover {
+		background-color: #008000;
+	}
+`;
+const Select = styled.select`
+	background-color: #043927;
+	height: 40px;
+	width: 100px;
+	color: white;
+	font-size: 18px;
+	border-radius: 5px;
+`;
 
 export default UpdateBrand;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import axios from "axios";
 const initialForm = {
 	name: "",
@@ -46,7 +47,7 @@ const CreateProduct = () => {
 	};
 	console.log(form);
 	return (
-		<div style={{ display: "flex", justifyContent: "center" }}>
+		<div style={{ display: "flex", justifyContent: "center", height: "100%"}}>
 			<form
 				style={{
 					margin: "0 auto",
@@ -56,9 +57,11 @@ const CreateProduct = () => {
 				}}
 				onSubmit={handleSubmit}
 			>
+			<div style={{display: "flex"}}>
 				<label>
 					Name
-					<input
+					<br />
+					<Input
 						type="text"
 						placeholder="Name..."
 						name="name"
@@ -68,7 +71,9 @@ const CreateProduct = () => {
 				</label>
 				<label>
 					Image
-					<input
+					<br />
+					<Input
+						style={{marginLeft: "10px"}}
 						type="text"
 						placeholder="Image url..."
 						name="image_url"
@@ -76,10 +81,12 @@ const CreateProduct = () => {
 						value={form.image_url}
 					/>
 				</label>
+				</div>
+				<div style={{display: "flex"}}>
 				<label>
 					Description
 					<br />
-					<textarea
+					<Textarea
 						name="description"
 						onChange={handleChange}
 						value={form.description}
@@ -87,11 +94,13 @@ const CreateProduct = () => {
 						rows="10"
 					>
 						Description...
-					</textarea>
+					</Textarea>
 				</label>
 				<label>
 					Price
-					<input
+					<br />
+					<Input
+						style={{marginLeft: "10px"}}
 						type="number"
 						placeholder="Price..."
 						name="price"
@@ -99,21 +108,65 @@ const CreateProduct = () => {
 						value={form.price}
 					/>
 				</label>
+				</div>
 				<label>
 					Choose a brand
-					<select name="brand" onChange={handleChange}>
+					<br />
+					<Select name="brand" onChange={handleChange}>
 						<option value="default">Brands</option>
 						{brands.map((b, i) => (
 							<option key={i} value={b.id}>
 								{b.name}
 							</option>
 						))}
-					</select>
+					</Select>
 				</label>
-				<button type="submit">Create product</button>
+				<Button type="submit">Create product</Button>
 			</form>
 		</div>
 	);
 };
 
+const Input = styled.input`
+	min-width: 200px;
+	max-width: 350px;
+	height: 50px;
+	border-radius: 5px;
+	margin: 10px auto;
+	border: 2px solid black;
+	padding-left: 10px;
+	font-size: 20px;
+`;
+
+const Textarea = styled.textarea`
+	border-radius: 5px;
+	margin: 10px auto;
+	border: 2px solid black;
+	padding-left: 10px;
+	font-size: 20px;
+	
+`;
+
+const Button = styled.button`
+	background-color: #043927;
+	justify-self: center;
+	border-radius: 5px;
+	color: white;
+	height: 40px;
+	border: none;
+	margin: 10px;
+	font-size: 20px;
+	&:hover{
+		background-color: #008000;
+	}
+`;
+const Select = styled.select`
+	background-color: #043927;
+	height: 40px;
+	width: 100px;
+	color: white;
+	font-size: 18px;
+	border-radius: 5px;
+
+`
 export default CreateProduct;

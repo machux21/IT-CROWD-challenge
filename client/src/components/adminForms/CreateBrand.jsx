@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import axios from "axios";
 const initialForm = {
 	name: "",
@@ -43,7 +44,8 @@ const CreateBrand = () => {
 			>
 				<label>
 					Brand Name
-					<input
+					<br />
+					<Input
 						type="text"
 						placeholder="Brand name..."
 						name="name"
@@ -53,7 +55,8 @@ const CreateBrand = () => {
 				</label>
 				<label>
 					Logo URL
-					<input
+					<br />
+					<Input
 						type="text"
 						placeholder="Logo url..."
 						name="logo_url"
@@ -61,10 +64,34 @@ const CreateBrand = () => {
 						onChange={handleChange}
 					/>
 				</label>
-				<button type="submit">Create Brand</button>
+				<Button type="submit">Create Brand</Button>
 			</form>
 		</div>
 	);
 };
 
+const Input = styled.input`
+	min-width: 200px;
+	max-width: 350px;
+	height: 50px;
+	border-radius: 5px;
+	margin: 10px auto;
+	border: 2px solid black;
+	padding-left: 10px;
+	font-size: 20px;
+`;
+
+const Button = styled.button`
+	background-color: #043927;
+	justify-self: center;
+	border-radius: 5px;
+	color: white;
+	height: 40px;
+	border: none;
+	margin: 10px;
+	font-size: 20px;
+	&:hover{
+		background-color: #008000;
+	}
+`;
 export default CreateBrand;
